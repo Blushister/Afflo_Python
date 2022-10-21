@@ -2,13 +2,13 @@ import random
 
 aleatoire = random.randint(0, 100)
 
-debug = False
+debug = True
 vs = False
 tournois = False
 manches = False
 ia = False
-stats = True
-
+stats = False
+Multi_coop = True
 
 def jeux_solo():
     a = random.randint(1, 100)
@@ -132,6 +132,91 @@ def iavsia(min, max):
             return icounter
 
 
+def Multiplayer_coop(nb):
+    a = random.randint(0, nb)
+    if debug:
+        print(a)
+    nb_player = int(input("Nombre de joueur : "))
+    if nb_player > 4:
+        print("Maximum 4 joueurs")
+        return
+    playerround = 1
+    icounter = 0
+    while 1:
+        icounter += 1
+        if nb_player == 2:
+            if playerround == 1:
+                player_nb = int(input("Player 1: "))
+                playerround = 2
+            else:
+                player_nb = int(input("Player 2: "))
+                playerround = 1
+            if a < player_nb:
+                print("Session 1 : Trop grand")
+            elif a > player_nb:
+                print("Session 1 : Trop petit")
+            else:
+                if playerround == 2:
+                    print(f"Player 1 a win en {icounter}")
+                    break
+                else:
+                    print(f"Player 2 a win en {icounter}")
+                    break
+        elif nb_player == 3:
+            if playerround == 1:
+                player_nb = int(input("Player 1: "))
+                playerround = 2
+            elif playerround == 2:
+                player_nb = int(input("Player 2: "))
+                playerround = 3
+            else:
+                player_nb = int(input("Player 3: "))
+                playerround = 1
+            if a < player_nb:
+                print("Session 1 : Trop grand")
+            elif a > player_nb:
+                print("Session 1 : Trop petit")
+            else:
+                if playerround == 2:
+                    print(f"Player 1 a win en {icounter}")
+                    break
+                elif playerround == 3:
+                    print(f"Player 2 a win en {icounter}")
+                    break
+                else:
+                    print(f"Player 3 a win en {icounter}")
+                    break
+        elif nb_player == 4:
+            if playerround == 1:
+                player_nb = int(input("Player 1: "))
+                playerround = 2
+            elif playerround == 2:
+                player_nb = int(input("Player 2: "))
+                playerround = 3
+            elif playerround == 3:
+                player_nb = int(input("Player 3: "))
+                playerround = 4
+            else:
+                player_nb = int(input("Player 4: "))
+                playerround = 1
+            if a < player_nb:
+                print("Session 1 : Trop grand")
+            elif a > player_nb:
+                print("Session 1 : Trop petit")
+            else:
+                if playerround == 2:
+                    print(f"Player 1 a win en {icounter}")
+                    break
+                elif playerround == 3:
+                    print(f"Player 2 a win en {icounter}")
+                    break
+                elif playerround == 4:
+                    print(f"Player 3 a win en {icounter}")
+                    break
+                else:
+                    print(f"Player 4 a win en {icounter}")
+                    break
+
 # def grandeur(a, x):
 #     if a < x:
 #         return 1
@@ -176,13 +261,16 @@ def main():
         jeux_vs()
     elif tournois:
         print("Mode tournois")
-        mode_tournois(100000000000000)
+        mode_tournois(100)
     elif ia:
         print("Mode ia")
         iavsia()
     elif stats:
         print("Mode stats")
         statistique()
+    elif Multi_coop:
+        print("Mode Multiplayer coop")
+        Multiplayer_coop(100)
     else:
         print("Mode solo")
         jeux_solo()
